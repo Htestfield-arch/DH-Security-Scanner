@@ -1,4 +1,4 @@
-# Gmail Security Scanner & Webhook Alerter 🛡️
+# Gmail Security Scanner & Webhook Alerts 🛡️
 
 Este proyecto es una herramienta de escritorio desarrollada en Python que utiliza la **API de Gmail** para escanear bandejas de entrada en busca de contenido sensible y alertar automáticamente mediante un archivo local y un **Webhook externo**.
 
