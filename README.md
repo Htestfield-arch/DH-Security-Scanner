@@ -28,7 +28,7 @@ Este proyecto es una herramienta de escritorio desarrollada en Python que utiliz
    Descarga el archivo de credenciales OAuth (App de escritorio) y guárdalo como client_secret.json en la carpeta raíz del proyecto.
 
 🛠️ Uso
-Ejecuta el script: python scanner.py.
+Ejecuta el script python: scanner.py.
 
 Autoriza la aplicación en tu navegador (la primera vez).
 
