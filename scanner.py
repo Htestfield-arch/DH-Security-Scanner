@@ -9,10 +9,16 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
 # --- CONFIGURACIÓN DE ARCHIVOS ---
-# Al usar nombres de archivo sin ruta completa, el script busca en su misma carpeta
-FILE_CLIENT_SECRET = 'client_secret.json'
-FILE_TOKEN = 'token.json'
-FILE_ALERTS = 'alertas.txt'
+try:
+    # Si se ejecuta como script normal
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+except NameError:
+    # Si se ejecuta en entornos interactivos raros
+    BASE_DIR = os.getcwd()
+
+FILE_CLIENT_SECRET = os.path.join(BASE_DIR, 'client_secret.json')
+FILE_TOKEN = os.path.join(BASE_DIR, 'token.json')
+FILE_ALERTS = os.path.join(BASE_DIR, 'alertas.txt')
 
 # URL del Webhook (Reemplazar con una propia o configurar vía interfaz)
 URL_WEBHOOK = "https://webhook.site/2f2066c1-349d-4a19-9446-93a041e38377" 
