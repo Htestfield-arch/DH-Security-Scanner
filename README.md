@@ -12,7 +12,7 @@ Este proyecto es una herramienta de escritorio desarrollada en Python que utiliz
 
 1. **Clonar el repositorio:**
    bash
-   git clone [https://github.com/Htestfield-arch/DH-Security-Scanner](https://github.com/Htestfield-arch/DH-Security-Scanner)
+   git clone [https://github.com/Htestfield-arch/DH-Security-Scanner] (https://github.com/Htestfield-arch/DH-Security-Scanner)
    cd DH-Security-Scanner
 
 2. **Instalar dependencias:**
@@ -46,7 +46,12 @@ token.json
 
 alertas.txt
 
-Asegúrate de agregar estos archivos a tu .gitignore antes de realizar un push.
+Asegúrate de agregar tu propia direccion a tu webhook en esta parte de la linea de codigo:
+
+# URL del Webhook (Reemplazar con una propia o configurar vía interfaz)
+URL_WEBHOOK = "TU_PROPIA_URL" 
+
+
 
 👤 Autor
 Daniel Enrique Herrera Ferrer
