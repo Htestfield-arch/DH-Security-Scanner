@@ -1,0 +1,18 @@
+{
+  "webhook_url": "https://miwebhook.com/alerta",
+  "keywords": [
+    "confidencial",
+    "contraseña",
+    "contrasena"
+  ],
+  "whitelist_domains": [
+    "google.com"
+  ],
+  "forbidden_ext": [
+    ".bat",
+    ".exe",
+    ".js",
+    ".zip"
+  ],
+  "dark_mode": true
+}
