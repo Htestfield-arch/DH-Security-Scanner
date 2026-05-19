@@ -52,7 +52,7 @@ google-api-python-client
 
 ```text
 DH-Security-Scanner/
-├─ scanner_reescrito.py
+├─ scanner.py
 ├─ requirements.txt
 ├─ config.json
 ├─ client_secret.json
@@ -82,7 +82,7 @@ pip install -r requirements.txt
 5. Ejecuta la aplicación:
 
 ```bash
-python scanner_reescrito.py
+python scanner.py
 ```
 
 ### Opción 2: Ejecutable para usuarios sin Python
@@ -91,7 +91,7 @@ Si deseas distribuir la aplicación sin requerir Python instalado, puedes crear 
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed scanner_reescrito.py
+pyinstaller --onefile --windowed scanner.py
 ```
 
 El ejecutable quedará en la carpeta `dist/`.
@@ -155,7 +155,7 @@ El fondo principal puede configurarse en `#101010`, y el panel de resultados cam
 
 ```bash
 pip install -r requirements.txt
-python scanner_reescrito.py
+python scanner.py
 ```
 
 ## Compatibilidad
