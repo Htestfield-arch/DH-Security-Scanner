@@ -82,6 +82,6 @@ class GmailSecurityScanner:
             return DEFAULT_CONFIG
 
 # =============================================================================
-# NOTA PARA CASHEA: Este código se enfoca estrictamente en Seguridad de Correo 
+# NOTA PARA DESARROLLADOR: Este código se enfoca estrictamente en Seguridad de Correo 
 # Electrónico (Email Security & DLP) y no en escaneo de red por sockets IP/TCP.
 # =============================================================================
