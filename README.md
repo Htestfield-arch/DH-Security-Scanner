@@ -1,117 +1,192 @@
-📌 Gmail Security Scanner – Python 3.11+
-Aplicación en Python que se conecta a la API de Gmail mediante OAuth 2.0, analiza los últimos correos del inbox y detecta palabras clave sensibles, adjuntos peligrosos y dominios no confiables.
-Genera alertas en archivo de texto y opcionalmente envía notificaciones vía Webhook.
+# DH Security Scanner
 
-🚀 Características principales
-Autenticación OAuth 2.0 con Gmail.
+Aplicación de escritorio en Python para monitorear correos de Gmail, detectar palabras clave y adjuntos peligrosos, registrar alertas en archivo local y enviar notificaciones por webhook.
 
-Lectura de los últimos correos del inbox.
+## Descripción
 
-Búsqueda de palabras clave en asunto y cuerpo.
+DH Security Scanner fue diseñado como una herramienta ligera de análisis y alerta para Gmail usando Python y Tkinter. Permite:
 
-Registro de alertas en alertas.txt.
+- Configurar un webhook de notificación.
+- Agregar keywords personalizadas.
+- Definir dominios permitidos.
+- Agregar extensiones peligrosas desde la interfaz.
+- Registrar alertas en `alertas.txt`.
+- Ejecutar el escaneo en segundo plano para no congelar la interfaz.
 
-Whitelist de dominios confiables.
+## Funciones principales
 
-Detección de adjuntos peligrosos (.zip, .exe, .bat, .js).
+- Escaneo de correos recientes de Gmail.
+- Detección de palabras clave en asunto y cuerpo del mensaje.
+- Detección de archivos adjuntos por extensión.
+- Lista de dominios en whitelist.
+- Persistencia de configuración en `config.json`.
+- Botones independientes para `DETENER` y `SALIR`.
+- Tema oscuro con estilo moderno.
+- Resaltado temporal del panel de resultados cuando se detecta una alerta.
 
-Notificación opcional por Webhook.
+## Requisitos
 
-Interfaz gráfica simple con Tkinter.
+- Python 3.10 o superior.
+- Una cuenta de Gmail con acceso autorizado a Gmail API.
+- Archivo `client_secret.json` descargado desde Google Cloud Console.
+- Conexión a Internet para autenticar Gmail y enviar webhooks.
 
-Keywords, dominios y webhook configurables desde la UI.
+## Dependencias
 
-🛠️ Requisitos
-Python 3.11+
+Instala las dependencias con:
 
-Paquetes de dependencia previos antes de instalar:
-
-Code
-pip install google-auth google-auth-oauthlib google-api-python-client requests
-Archivo client_secret.json descargado desde su Google Cloud Console usando su Gmail.
-
-Permisos habilitados para Gmail API.
-
-📥 Instalación
-Clonar o descomprimir el proyecto.
-
-Colocar client_secret.json en la misma carpeta del script.
-
-Instalar dependencias:
-
-Code
+```bash
 pip install -r requirements.txt
-(Opcional: puedes generar este archivo con tus dependencias)
+```
 
-▶️ Ejecución
+El archivo `requirements.txt` debe incluir:
 
-Code
-python scanner.py
-La primera vez se abrirá una ventana del navegador para autorizar el acceso a Gmail.
-Después se generará automáticamente token.json.
+```txt
+requests
+google-auth
+google-auth-oauthlib
+google-api-python-client
+```
 
-🧪 Uso de la aplicación
+## Estructura del proyecto
 
-1. Configurar Webhook
-Escribir la URL en el campo correspondiente.
+```text
+DH-Security-Scanner/
+├─ scanner_reescrito.py
+├─ requirements.txt
+├─ config.json
+├─ client_secret.json
+├─ token.json
+├─ alertas.txt
+└─ README.md
+```
 
-Presionar Guardar webhook.
+## Instalación
 
-También puedes restaurar el webhook por defecto.
+### Opción 1: Ejecutar con Python instalado
 
-2. Añadir palabras clave
-Escribir una o varias separadas por coma:
+1. Descarga e instala Python desde:
+   https://www.python.org/downloads/
 
-Code
-confidencial, contraseña, urgente
-3. Añadir dominios a whitelist
-Ejemplo:
+2. Durante la instalación en Windows, activa la opción:
+   **Add Python to PATH**
 
-Code
-suempresa.com
-google.com
+3. Abre una terminal en la carpeta del proyecto.
 
-4. Iniciar monitoreo
-Presionar INICIAR MONITOREO.
+4. Instala las dependencias:
 
-La app revisará los últimos correos y mostrará:
+```bash
+pip install -r requirements.txt
+```
 
-✔️ si el correo está limpio
+5. Ejecuta la aplicación:
 
-❌ si contiene amenazas
+```bash
+python scanner_reescrito.py
+```
 
-5. Alertas
-Las alertas se guardan en:
+### Opción 2: Ejecutable para usuarios sin Python
 
-alertas.txt
-Y opcionalmente se envían al Webhook configurado.
+Si deseas distribuir la aplicación sin requerir Python instalado, puedes crear un ejecutable con PyInstaller:
 
-📄 Estructura del proyecto
-Code
-/proyecto
-│── scanner.py
-│── client_secret.json
-│── token.json (se genera automáticamente)
-│── alertas.txt
-│── README.md
+```bash
+pip install pyinstaller
+pyinstaller --onefile --windowed scanner_reescrito.py
+```
 
-🧩 Notas adicionales
-Puedes usar una cuenta Gmail de pruebas para evitar riesgos.
+El ejecutable quedará en la carpeta `dist/`.
 
-El token OAuth se renueva automáticamente.
+## Configuración de Gmail API
 
-El análisis se hace sobre los últimos 10 correos (puedes modificarlo).
+Antes de usar la aplicación, necesitas crear credenciales OAuth:
 
-📜 Licencia
-Uso libre para fines educativos o empresariales internos.
+1. Entra a Google Cloud Console.
+2. Crea un proyecto nuevo o usa uno existente.
+3. Activa la API de Gmail.
+4. Configura la pantalla de consentimiento OAuth.
+5. Descarga el archivo `client_secret.json`.
+6. Colócalo en la misma carpeta del script.
+7. Ejecuta la aplicación por primera vez.
+8. Autoriza el acceso a Gmail cuando se abra el navegador.
 
+Después de la primera autenticación, la aplicación generará el archivo `token.json`.
 
+## Uso
 
-👤 Autor
-Daniel Enrique Herrera Ferrer
+1. Ejecuta la aplicación.
+2. Configura tu webhook si deseas recibir alertas externas.
+3. Agrega keywords relevantes.
+4. Agrega dominios seguros a la whitelist.
+5. Agrega extensiones peligrosas adicionales si lo necesitas.
+6. Presiona **INICIAR MONITOREO**.
+7. Usa **DETENER** para pausar el análisis sin cerrar la app.
+8. Usa **SALIR** para cerrar la aplicación.
 
-Especialista IT 
+## Persistencia
 
-https://www.linkedin.com/in/daniel-herrera-it-specialist/
+La aplicación guarda automáticamente la configuración en `config.json`, incluyendo:
 
+- Webhook.
+- Keywords.
+- Dominios permitidos.
+- Extensiones peligrosas.
+- Estado del tema oscuro.
+
+## Alertas
+
+Cuando se detecta una coincidencia:
+
+- Se escribe un registro en `alertas.txt`.
+- Se envía un webhook si está configurado.
+- El panel de resultados cambia temporalmente a color rojo suave.
+
+## Interfaz
+
+La aplicación usa Tkinter con diseño simple y oscuro.  
+El fondo principal puede configurarse en `#101010`, y el panel de resultados cambia a `#FF675B` cuando aparece una alerta.
+
+## Instalación rápida en Windows sin conocimientos técnicos
+
+1. Instala Python desde la web oficial.
+2. Descarga el proyecto desde GitHub.
+3. Copia `client_secret.json` dentro de la carpeta.
+4. Abre una consola en la carpeta del proyecto.
+5. Ejecuta:
+
+```bash
+pip install -r requirements.txt
+python scanner_reescrito.py
+```
+
+## Compatibilidad
+
+### Windows
+Compatible, recomendado para uso con interfaz gráfica.
+
+### Linux
+Compatible si tienes entorno gráfico disponible.
+
+### OpenMediaVault con Docker Compose
+Es factible, pero la interfaz Tkinter necesita entorno gráfico o acceso remoto.  
+Si quieres usarlo en OMV, lo ideal es ejecutar la lógica en modo headless o con escritorio remoto/VNC.
+
+### AWS Lightsail
+También es factible, pero se recomienda usarlo como servicio de backend o con entorno gráfico remoto.
+
+## Notas importantes
+
+- El proyecto usa Gmail API, por lo que necesita autorización OAuth.
+- El archivo `token.json` se genera automáticamente luego del primer acceso.
+- Las extensiones peligrosas pueden ampliarse desde la interfaz.
+- La aplicación fue diseñada para ser ligera, funcional y fácil de adaptar.
+
+## Autor
+
+**Daniel Herrera**  
+LinkedIn: https://www.linkedin.com/in/daniel-herrera-it-specialist/
+
+## Repositorio
+
+Código fuente:  
+https://github.com/Htestfield-arch/DH-Security-Scanner/blob/main/scanner.py
 
