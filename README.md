@@ -44,7 +44,6 @@ pip install -r requirements.txt
 (Opcional: puedes generar este archivo con tus dependencias)
 
 ▶️ Ejecución
-Ejecutar:
 
 Code
 python scanner.py
@@ -52,6 +51,7 @@ La primera vez se abrirá una ventana del navegador para autorizar el acceso a G
 Después se generará automáticamente token.json.
 
 🧪 Uso de la aplicación
+
 1. Configurar Webhook
 Escribir la URL en el campo correspondiente.
 
@@ -70,6 +70,7 @@ Ejemplo:
 Code
 suempresa.com
 google.com
+
 4. Iniciar monitoreo
 Presionar INICIAR MONITOREO.
 
@@ -82,7 +83,6 @@ La app revisará los últimos correos y mostrará:
 5. Alertas
 Las alertas se guardan en:
 
-Code
 alertas.txt
 Y opcionalmente se envían al Webhook configurado.
 
@@ -94,6 +94,7 @@ Code
 │── token.json (se genera automáticamente)
 │── alertas.txt
 │── README.md
+
 🧩 Notas adicionales
 Puedes usar una cuenta Gmail de pruebas para evitar riesgos.
 
