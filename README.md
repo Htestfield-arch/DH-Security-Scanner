@@ -1,55 +1,108 @@
-# Gmail Security Scanner & Webhook Alerts 🛡️
+📌 Gmail Security Scanner – Python 3.11+
+Aplicación en Python que se conecta a la API de Gmail mediante OAuth 2.0, analiza los últimos correos del inbox y detecta palabras clave sensibles, adjuntos peligrosos y dominios no confiables.
+Genera alertas en archivo de texto y opcionalmente envía notificaciones vía Webhook.
 
-Este proyecto es una herramienta de escritorio desarrollada en Python que utiliza la **API de Gmail** para escanear bandejas de entrada en busca de contenido sensible y alertar automáticamente mediante un archivo local y un **Webhook externo**.
+🚀 Características principales
+Autenticación OAuth 2.0 con Gmail.
 
-## ✨ Características
-- **Búsqueda Dinámica:** Permite añadir palabras clave en tiempo real desde la interfaz.
-- **Detección de Adjuntos:** Identifica extensiones de riesgo (`.exe`, `.zip`, etc.).
-- **Notificaciones Webhook:** Envía un JSON con los detalles de la alerta a una URL configurada.
-- **Whitelist:** Omite dominios seguros para evitar falsos positivos.
+Lectura de los últimos correos del inbox.
 
-## 🚀 Instalación
+Búsqueda de palabras clave en asunto y cuerpo.
 
-1. **Clonar el repositorio:**
-   bash
-   git clone [https://github.com/Htestfield-arch/DH-Security-Scanner] (https://github.com/Htestfield-arch/DH-Security-Scanner)
-   cd DH-Security-Scanner
+Registro de alertas en alertas.txt.
 
-2. **Instalar dependencias:**
+Whitelist de dominios confiables.
 
-   pip install google-api-python-client google-auth-oauthlib requests
+Detección de adjuntos peligrosos (.zip, .exe, .bat, .js).
 
-3. **Configurar Credenciales de Google:**
+Notificación opcional por Webhook.
 
-   Ve a Google Cloud Console. https://console.cloud.google.com/
+Interfaz gráfica simple con Tkinter.
 
-   Crea un proyecto y habilita la Gmail API.
+Keywords, dominios y webhook configurables desde la UI.
 
-   Descarga el archivo de credenciales OAuth (App de escritorio) y guárdalo como client_secret.json en la carpeta raíz del proyecto.
+🛠️ Requisitos
+Python 3.11+
 
-🛠️ Uso
-Ejecuta el script python: scanner.py.
+Paquetes de dependencia previos antes de instalar:
 
-Autoriza la aplicación en tu navegador (la primera vez).
+Code
+pip install google-auth google-auth-oauthlib google-api-python-client requests
+Archivo client_secret.json descargado desde su Google Cloud Console usando su Gmail.
 
-Añade palabras clave y presiona el boton "Iniciar Monitoreo".
+Permisos habilitados para Gmail API.
 
-Revisa las alertas en alertas.txt o en tu endpoint de Webhook (lo puedes incluir aparte en el codigo).
+📥 Instalación
+Clonar o descomprimir el proyecto.
 
-⚠️ Seguridad (IMPORTANTE)
+Colocar client_secret.json en la misma carpeta del script.
 
-Este repositorio no incluye ni debe incluir:
+Instalar dependencias:
 
-client_secret.json
+Code
+pip install -r requirements.txt
+(Opcional: puedes generar este archivo con tus dependencias)
 
-token.json
+▶️ Ejecución
+Ejecutar:
 
+Code
+python scanner.py
+La primera vez se abrirá una ventana del navegador para autorizar el acceso a Gmail.
+Después se generará automáticamente token.json.
+
+🧪 Uso de la aplicación
+1. Configurar Webhook
+Escribir la URL en el campo correspondiente.
+
+Presionar Guardar webhook.
+
+También puedes restaurar el webhook por defecto.
+
+2. Añadir palabras clave
+Escribir una o varias separadas por coma:
+
+Code
+confidencial, contraseña, urgente
+3. Añadir dominios a whitelist
+Ejemplo:
+
+Code
+suempresa.com
+google.com
+4. Iniciar monitoreo
+Presionar INICIAR MONITOREO.
+
+La app revisará los últimos correos y mostrará:
+
+✔️ si el correo está limpio
+
+❌ si contiene amenazas
+
+5. Alertas
+Las alertas se guardan en:
+
+Code
 alertas.txt
+Y opcionalmente se envían al Webhook configurado.
 
-Asegúrate de agregar tu propia direccion a tu webhook en esta parte de la linea de codigo:
+📄 Estructura del proyecto
+Code
+/proyecto
+│── scanner.py
+│── client_secret.json
+│── token.json (se genera automáticamente)
+│── alertas.txt
+│── README.md
+🧩 Notas adicionales
+Puedes usar una cuenta Gmail de pruebas para evitar riesgos.
 
-# URL del Webhook (Reemplazar con una propia o configurar vía interfaz)
-URL_WEBHOOK = "TU_PROPIA_URL" 
+El token OAuth se renueva automáticamente.
+
+El análisis se hace sobre los últimos 10 correos (puedes modificarlo).
+
+📜 Licencia
+Uso libre para fines educativos o empresariales internos.
 
 
 
